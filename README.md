@@ -47,14 +47,14 @@ my-app/
 
 ## Formatting Code Automatically
 
-To format our code whenever we make a commit in git, we need to install the following dependencies:
+To format our code whenever we make a commit in git, we need to install the following dependence:
 
 ```sh
-npm install --save husky lint-staged prettier
+npm install --save ...
 ```
 
 Alternatively you may use `yarn`:
 
 ```sh
-yarn add husky lint-staged prettier
+yarn add ...
 ```
