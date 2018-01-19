@@ -4,8 +4,6 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
-// import logo from './logo.svg';
-// import './App.css';
 import store from './store.js';
 import Chat from './components/chat/Chat';
 
@@ -18,9 +16,9 @@ class App extends Component {
         <Provider store={store}>
             <JssProvider jss={jss} generateClassName={generateClassName}>
                 <Chat 
-                    height={400}
-                    // independed={false}
-                    userName='Tom'
+                    height={this.props.height}
+                    independed={this.props.independed}
+                    userName={this.props.userName}
                 />
             </JssProvider>
         </Provider>
@@ -29,3 +27,9 @@ class App extends Component {
 }
 
 export default App;
+
+App.defaultProps = {
+    height: 320,
+    independed: true,
+    userName: ''
+}
