@@ -1,23 +1,15 @@
 import React, { PureComponent } from 'react';
-import { Paper } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { addMessage } from '../../actions/ChatActions';
+import { sendMessageFormStyle } from './sendMessageFormStyle';
 
-const styles = theme => ({
-    sendMessageForm: {
-        position: 'relative',
-        width: '100%',
-        bottom: 5,
-    }
-});
 const initialState = {
     message: ''
 }
@@ -69,7 +61,7 @@ class SendMessageForm extends PureComponent {
     }
 }
 
-const StyledSendMessageForm = withStyles(styles)(SendMessageForm);
+const StyledSendMessageForm = withStyles(sendMessageFormStyle)(SendMessageForm);
 
 export default connect(
     state => ({
