@@ -1,13 +1,28 @@
 import React, { PureComponent } from 'react';
+import { Paper } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardContent } from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
+import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { saveUserName } from '../../actions/ChatActions';
-import { autentificationFormStyle } from './autentificationFormStyle';
+
+const styles = theme => ({
+    autentificationForm: {
+        position: 'relative',
+        width: '100%',
+        bottom: 5,
+    },
+    // message_text: {
+    //     whiteSpace: 'nowrap',
+    //     overflow: 'hidden',
+    //     textOverflow: 'ellipsis',
+    // }
+});
 
 class AutentificationForm extends PureComponent {
     state = {
@@ -27,6 +42,7 @@ class AutentificationForm extends PureComponent {
         this.props.saveUserName(this.state);
     }
     render() {
+        
         const { classes } = this.props;
         return(
             <Card className={classes.autentificationForm}>
@@ -49,7 +65,7 @@ class AutentificationForm extends PureComponent {
     }
 }
 
-const StyledAutentificationForm = withStyles(autentificationFormStyle)(AutentificationForm);
+const StyledAutentificationForm = withStyles(styles)(AutentificationForm);
 
 export default connect(
     state => ({

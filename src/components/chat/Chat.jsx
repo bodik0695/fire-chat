@@ -1,8 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
+import { Paper } from 'material-ui';
+import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
+import { blue, grey } from 'material-ui/colors';
 import { Refresh } from 'material-ui-icons';
 
 import Message from '../message/Message';
@@ -10,7 +15,26 @@ import MessageList from '../messageList/MessageList';
 import AutentificationForm from '../autentificationFrom/AutentificationForm';
 import SendMessageForm from '../sendMessageForm/SendMessageForm';
 import { loadUserName, loadMessages, saveUserName } from '../../actions/ChatActions';
-import { chatStyle } from './chatStyle';
+
+const styles = theme => ({
+    chat: {
+        display: 'flex',
+        overflow: 'hidden',
+        background: grey[200],
+        width: '100%',
+        flexDirection: 'column',
+    },
+    updateBtn: {
+        margin: 0,
+        display: 'block',
+        position: 'absolute',
+        top: '15px',
+        right: '17px',
+        padding: '5px',
+        color: blue[500],
+        border: `1px solid ${blue[500]}`,
+    }
+});
 
 class Chat extends PureComponent {
     state = {
@@ -24,18 +48,20 @@ class Chat extends PureComponent {
                 userName: this.props.userName
             });
         }
+        // this.props.loadMessages();
     }
     componentWillReceiveProps(nextState) {
-        const { loadedUserName } = nextState;
+        const { userName } = nextState;
         this.setState({
-            userName: loadedUserName
+            userName
         });
     }
     render() {
         const { classes } = this.props;
+        console.log(this.props);
         return (
             <div 
-                style={{height: `${this.props.height}px`}}
+                style={{height: this.props.height}}
                 className={classes.chat}
             >
                 
@@ -61,7 +87,7 @@ class Chat extends PureComponent {
     }
 }
 
-const StyledChat = withStyles(chatStyle)(Chat);
+const StyledChat = withStyles(styles)(Chat);
 
 export default connect(
     state => ({
@@ -74,3 +100,9 @@ export default connect(
         saveUserName
     }, dispatch)
 )(StyledChat)
+
+StyledChat.defaultProps = {
+    height: '320px',
+    independed: true,
+    userName: ''
+}
