@@ -26,14 +26,14 @@ class AutentificationForm extends Component {
     
     render() {
         const { classes } = this.props;
-        
+
         return(
             <Card className={classes.autentificationForm}>
                 <CardContent>
                     <TextField 
                         label='Введите имя'
-                        name = 'userName'
-                        color= 'primary'
+                        name='userName'
+                        color='primary'
                         fullWidth
                         onChange={this.onChangeValue}
                     />

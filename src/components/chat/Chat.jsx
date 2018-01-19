@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import IconButton from 'material-ui/IconButton';
@@ -12,7 +12,7 @@ import SendMessageForm from '../sendMessageForm/SendMessageForm';
 import { loadUserName, loadMessages, saveUserName } from '../../actions/ChatActions';
 import { chatStyle } from './chatStyle';
 
-class Chat extends PureComponent {
+class Chat extends Component {
     componentWillMount() {
         this.props.loadUserName();
     }
