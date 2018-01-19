@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardContent } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
@@ -9,25 +9,24 @@ import { connect } from 'react-redux';
 import { saveUserName } from '../../actions/ChatActions';
 import { autentificationFormStyle } from './autentificationFormStyle';
 
-class AutentificationForm extends PureComponent {
-    state = {
-        userName: ''
-    }
-    componentWillMount() {
-    }
+class AutentificationForm extends Component {
+    state = {}
+
     onChangeValue = (e) => {
-        const target = e.target;
+        const { name, value } = e.target;
         this.setState((prevState) => ({
-            ...prevState.form,
-            [target.name]: target.value
-            
+            ...prevState,
+            [name]: value
         }));
     }
+
     sendUserName = () => {
         this.props.saveUserName(this.state);
     }
+    
     render() {
         const { classes } = this.props;
+        
         return(
             <Card className={classes.autentificationForm}>
                 <CardContent>

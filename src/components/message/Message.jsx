@@ -10,6 +10,7 @@ import { messageStyle } from './messageStyle';
 class Message extends PureComponent {
     render() {
         const { classes } = this.props;
+        
         return (
             <Card className={classes.message}>
                 <CardContent>

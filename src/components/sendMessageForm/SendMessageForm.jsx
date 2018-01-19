@@ -18,13 +18,15 @@ class SendMessageForm extends PureComponent {
     state = initialState
 
     onChangeValue = (e) => {
-        this.setState({
-            message: e.target.value
-        });
+        const { value } = e.target;
+        this.setState(() => ({
+            message: value
+        }));
     }
 
     onSendMessage = () => {
-        const { message } = this.state
+        const { message } = this.state;
+
         if (message) {
             this.props.addMessage(this.state);
             this.setState(initialState);
@@ -32,17 +34,17 @@ class SendMessageForm extends PureComponent {
     }
     render() {
         const { classes } = this.props;
-        const authorizationUserName = this.props.userName;
+        const { userName } = this.props;
+
         return(
             <Card className={classes.sendMessageForm}>
                 <CardContent>
                     <Typography>
-                        {authorizationUserName}
+                        {userName}
                     </Typography>
                     <TextField 
                         placeholder='Сообщение'
-                        name = 'name'
-                        color= 'primary'
+                        name='name'
                         fullWidth
                         multiline
                         rowsMax='2'

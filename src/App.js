@@ -6,19 +6,25 @@ import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
 import store from './store.js';
 import Chat from './components/chat/Chat';
+import { saveUserName } from './actions/ChatActions';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
 
 class App extends Component {
+    componentWillMount() {
+        const { userName } = this.props;
+        const { independed } = this.props;
+        if (!independed && userName) {
+            store.dispatch(saveUserName(this.props));
+        }
+    }
   render() {
     return (
         <Provider store={store}>
             <JssProvider jss={jss} generateClassName={generateClassName}>
                 <Chat 
                     height={this.props.height}
-                    independed={this.props.independed}
-                    userName={this.props.userName}
                 />
             </JssProvider>
         </Provider>
